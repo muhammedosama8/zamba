@@ -1,0 +1,99 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.brands {
+  padding: $space-12 0;
+  background: $color-bg-secondary;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  overflow: hidden;
+}
+
+.container {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-8;
+}
+
+.label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+// ─── Marquee ──────────────────────────────────────────────────────────────────
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, $color-bg-secondary, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, $color-bg-secondary, transparent);
+  }
+}
+
+.marquee {
+  display: flex;
+  gap: $space-8;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.brandItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4 $space-8;
+  background: $color-white-05;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  min-width: 140px;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-border-light;
+    background: $color-white-10;
+  }
+}
+
+.brandName {
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  color: $color-text-muted;
+  transition: color $transition-base;
+  letter-spacing: -0.01em;
+
+  .brandItem:hover & {
+    color: $color-white-80;
+  }
+}

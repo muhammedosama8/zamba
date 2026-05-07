@@ -1,0 +1,150 @@
+@use 'variables' as *;
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@mixin sm { @media (min-width: #{$bp-sm}) { @content; } }
+@mixin md { @media (min-width: #{$bp-md}) { @content; } }
+@mixin lg { @media (min-width: #{$bp-lg}) { @content; } }
+@mixin xl { @media (min-width: #{$bp-xl}) { @content; } }
+@mixin xxl { @media (min-width: #{$bp-2xl}) { @content; } }
+
+@mixin max-sm { @media (max-width: #{$bp-sm - 1px}) { @content; } }
+@mixin max-md { @media (max-width: #{$bp-md - 1px}) { @content; } }
+@mixin max-lg { @media (max-width: #{$bp-lg - 1px}) { @content; } }
+
+// ─── Container ────────────────────────────────────────────────────────────────
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+// ─── Flex helpers ─────────────────────────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+@mixin section-padding {
+  padding-top: $space-20;
+  padding-bottom: $space-20;
+
+  @include lg {
+    padding-top: $space-32;
+    padding-bottom: $space-32;
+  }
+}
+
+// ─── Typography ───────────────────────────────────────────────────────────────
+@mixin section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-accent;
+}
+
+@mixin section-title {
+  font-size: clamp(#{$font-size-3xl}, 4vw, #{$font-size-4xl});
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+}
+
+@mixin section-desc {
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+@mixin card-base {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-border-light;
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// ─── Button ───────────────────────────────────────────────────────────────────
+@mixin btn-reset {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: $font-family;
+}
+
+// ─── Text truncate ────────────────────────────────────────────────────────────
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ─── Gradient text ────────────────────────────────────────────────────────────
+@mixin gradient-text($from, $to) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ─── Glass effect ─────────────────────────────────────────────────────────────
+@mixin glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid $color-border;
+}
+
+// ─── Animate in ───────────────────────────────────────────────────────────────
+@mixin fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin fade-in {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,169 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.section {
+  padding: $space-20 0;
+  position: relative;
+  overflow: hidden;
+  background: $color-bg-secondary;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bgBlob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 100%;
+  background: radial-gradient(ellipse, rgba(245, 197, 24, 0.08) 0%, transparent 60%);
+}
+
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-6;
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.label {
+  @include section-label;
+}
+
+.title {
+  font-size: clamp(#{$font-size-3xl}, 5vw, #{$font-size-5xl});
+  font-weight: $font-weight-black;
+  line-height: $line-height-tight;
+  color: $color-white;
+  letter-spacing: -0.03em;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+.desc {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+}
+
+.contactLink {
+  color: $color-white;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.form {
+  width: 100%;
+  max-width: 520px;
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: $color-bg-primary;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  padding: $space-2 $space-2 $space-2 $space-5;
+  transition: border-color $transition-base;
+  gap: $space-3;
+
+  &:focus-within {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.1);
+  }
+}
+
+.inputIcon {
+  color: $color-text-muted;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: $font-size-base;
+  color: $color-white;
+  min-width: 0;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+}
+
+.submitBtn {
+  @include btn-reset;
+  padding: $space-3 $space-8;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  transition: all $transition-base;
+  height: 48px;
+
+  &:hover {
+    background: $color-accent-dark;
+    transform: scale(1.02);
+  }
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-4 $space-6;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: $radius-full;
+  color: #4ADE80;
+  font-weight: $font-weight-medium;
+}
+
+.alreadyMember {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.signInLink {
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-accent-dark;
+  }
+}

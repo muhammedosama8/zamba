@@ -1,0 +1,126 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.features {
+  @include section-padding;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, $color-border);
+  }
+}
+
+.container {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $space-14;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-5;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.label {
+  @include section-label;
+}
+
+.title {
+  @include section-title;
+  text-align: center;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+.desc {
+  @include section-desc;
+  text-align: center;
+}
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-5;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include xl {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  @include card-base;
+  padding: $space-8;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.iconWrap {
+  @include flex-center;
+  width: 54px;
+  height: 54px;
+  background: rgba(245, 197, 24, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.15);
+  border-radius: $radius-lg;
+  color: $color-accent;
+  transition: all $transition-base;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .card:hover & {
+    background: rgba(245, 197, 24, 0.15);
+    border-color: rgba(245, 197, 24, 0.3);
+  }
+}
+
+.cardTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+}
+
+.cardDesc {
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+  flex: 1;
+}
+
+.learnMore {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  transition: gap $transition-base;
+
+  &:hover {
+    gap: $space-3;
+  }
+}

@@ -1,0 +1,344 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// ─── Left panel ───────────────────────────────────────────────────────────────
+.panel {
+  display: none;
+  position: relative;
+  overflow: hidden;
+
+  @include lg {
+    display: flex;
+  }
+}
+
+.panelBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, $color-bg-secondary 0%, $color-bg-primary 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+.panelContent {
+  position: relative;
+  z-index: 1;
+  padding: $space-12;
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  text-decoration: none;
+
+  span {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+}
+
+.panelText {
+  h2 {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    margin-bottom: $space-4;
+  }
+
+  p {
+    font-size: $font-size-base;
+    line-height: $line-height-relaxed;
+    color: $color-text-secondary;
+  }
+}
+
+.panelStats {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+}
+
+.panelStat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.panelStatVal {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-accent;
+}
+
+.panelStatLbl {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.panelStatDivider {
+  width: 1px;
+  height: 40px;
+  background: $color-border;
+}
+
+.panelTestimonial {
+  display: flex;
+  gap: $space-4;
+  padding: $space-5;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+}
+
+.panelAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-full;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.panelQuote {
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: $color-white-80;
+  margin-bottom: $space-2;
+  font-style: italic;
+}
+
+.panelCite {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+// ─── Form side ────────────────────────────────────────────────────────────────
+.formSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-8 $space-6;
+  background: $color-bg-primary;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.mobileLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  text-decoration: none;
+  margin-bottom: $space-2;
+
+  span {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+
+  @include lg { display: none; }
+}
+
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.formTitle {
+  font-size: clamp(#{$font-size-xl}, 3vw, #{$font-size-2xl});
+  font-weight: $font-weight-bold;
+  color: $color-white;
+}
+
+.formSubtitle {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.authLink {
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  transition: color $transition-base;
+
+  &:hover { color: $color-accent-dark; }
+}
+
+// ─── Social auth ──────────────────────────────────────────────────────────────
+.socialAuth {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.socialBtn {
+  @include btn-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-3 $space-6;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-white;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-bg-card-alt;
+    border-color: $color-border-light;
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: $color-border;
+}
+
+.dividerText {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+// ─── Form ─────────────────────────────────────────────────────────────────────
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.fieldLabel {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-white-80;
+}
+
+.fieldLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forgotLink {
+  font-size: $font-size-sm;
+  color: $color-accent;
+  transition: color $transition-base;
+
+  &:hover { color: $color-accent-dark; }
+}
+
+.input {
+  width: 100%;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-3 $space-4;
+  font-size: $font-size-base;
+  color: $color-white;
+  font-family: $font-family;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &::placeholder { color: $color-text-muted; }
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.08);
+  }
+}
+
+.inputWrap {
+  position: relative;
+
+  .input { padding-right: 48px; }
+}
+
+.eyeBtn {
+  @include btn-reset;
+  position: absolute;
+  right: $space-3;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-text-muted;
+  transition: color $transition-base;
+
+  &:hover { color: $color-white; }
+}
+
+.submitBtn {
+  @include btn-reset;
+  width: 100%;
+  padding: 14px;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-accent-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 197, 24, 0.3);
+  }
+}
+
+.termsNote {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  text-align: center;
+  line-height: $line-height-relaxed;
+
+  a {
+    color: $color-text-secondary;
+    text-decoration: underline;
+    transition: color $transition-base;
+
+    &:hover { color: $color-white; }
+  }
+}

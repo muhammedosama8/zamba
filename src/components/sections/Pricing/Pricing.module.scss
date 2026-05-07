@@ -1,0 +1,327 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.pricing {
+	@include section-padding;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80vw;
+		height: 60vw;
+		background: radial-gradient(
+			ellipse,
+			rgba(245, 197, 24, 0.04) 0%,
+			transparent 60%
+		);
+		pointer-events: none;
+	}
+}
+
+.container {
+	@include container;
+	display: flex;
+	flex-direction: column;
+	gap: $space-14;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: $space-5;
+	text-align: center;
+}
+
+.label {
+	@include section-label;
+}
+
+.title {
+	@include section-title;
+}
+
+.accent {
+	color: $color-accent;
+}
+
+.desc {
+	@include section-desc;
+	max-width: 500px;
+}
+
+// ─── Toggle ───────────────────────────────────────────────────────────────────
+.toggle {
+	display: flex;
+	align-items: center;
+	gap: $space-3;
+}
+
+.toggleActive {
+	font-size: $font-size-base;
+	font-weight: $font-weight-semibold;
+	color: $color-white;
+	display: flex;
+	align-items: center;
+	gap: $space-2;
+}
+
+.toggleInactive {
+	font-size: $font-size-base;
+	color: $color-text-secondary;
+	display: flex;
+	align-items: center;
+	gap: $space-2;
+}
+
+.toggleBtn {
+	position: relative;
+	width: 52px;
+	height: 28px;
+	background: $color-bg-card;
+	border: 1px solid $color-border;
+	border-radius: $radius-full;
+	cursor: pointer;
+	transition: all $transition-base;
+
+	&.toggleBtnOn {
+		background: $color-accent;
+		border-color: $color-accent;
+	}
+}
+
+.toggleThumb {
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: $color-white;
+	border-radius: $radius-full;
+	transition: transform $transition-base;
+	box-shadow: $shadow-sm;
+
+	.toggleBtnOn & {
+		transform: translateX(24px);
+	}
+}
+
+.saveBadge {
+	padding: 2px 8px;
+	background: rgba(245, 197, 24, 0.15);
+	color: $color-accent;
+	border-radius: $radius-full;
+	font-size: $font-size-xs;
+	font-weight: $font-weight-semibold;
+}
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: $space-5;
+	align-items: start;
+
+	@include md {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.card {
+	background: $color-bg-card;
+	border: 1px solid $color-border;
+	border-radius: $radius-2xl;
+	padding: $space-8;
+	display: flex;
+	flex-direction: column;
+	gap: $space-6;
+	position: relative;
+	transition: all $transition-base;
+
+	&:hover:not(.highlighted) {
+		border-color: $color-border-light;
+		transform: translateY(-4px);
+		box-shadow: $shadow-lg;
+	}
+}
+
+.highlighted {
+	background: linear-gradient(
+		160deg,
+		rgba(245, 197, 24, 0.1) 0%,
+		$color-bg-card 60%
+	);
+	border-color: rgba(245, 197, 24, 0.4);
+	transform: translateY(-8px);
+	box-shadow:
+		0 20px 60px rgba(245, 197, 24, 0.12),
+		$shadow-xl;
+
+	&:hover {
+		transform: translateY(-12px);
+		box-shadow:
+			0 24px 70px rgba(245, 197, 24, 0.18),
+			$shadow-xl;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: calc(100% - 40px);
+		left: 20px;
+		height: 2px;
+		background: $color-accent;
+		border-radius: $radius-2xl $radius-2xl 0 0;
+	}
+}
+
+.popularBadge {
+	display: inline-flex;
+	align-items: center;
+	gap: $space-1;
+	padding: 4px 12px;
+	background: $color-accent;
+	color: $color-bg-primary;
+	border-radius: $radius-full;
+	font-size: $font-size-xs;
+	font-weight: $font-weight-bold;
+	position: absolute;
+	top: -14px;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+}
+
+.planHeader {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+	padding-top: $space-2;
+}
+
+.planName {
+	font-size: $font-size-xl;
+	font-weight: $font-weight-bold;
+	color: $color-white;
+}
+
+.planDesc {
+	font-size: $font-size-sm;
+	color: $color-text-secondary;
+	line-height: $line-height-relaxed;
+}
+
+.priceWrap {
+	display: flex;
+	align-items: flex-end;
+	gap: 4px;
+	line-height: 1;
+}
+
+.currency {
+	font-size: $font-size-xl;
+	font-weight: $font-weight-bold;
+	color: $color-white;
+	padding-bottom: 6px;
+}
+
+.price {
+	font-size: $font-size-5xl;
+	font-weight: $font-weight-black;
+	color: $color-white;
+	letter-spacing: -0.03em;
+}
+
+.period {
+	font-size: $font-size-base;
+	color: $color-text-secondary;
+	padding-bottom: 8px;
+}
+
+.annualNote {
+	font-size: $font-size-sm;
+	color: $color-text-secondary;
+	margin-top: -$space-4;
+}
+
+.features {
+	display: flex;
+	flex-direction: column;
+	gap: $space-3;
+	flex: 1;
+}
+
+.feature {
+	display: flex;
+	align-items: center;
+	gap: $space-3;
+	font-size: $font-size-sm;
+	color: $color-white-80;
+}
+
+.featureCheck {
+	@include flex-center;
+	width: 22px;
+	height: 22px;
+	background: rgba(245, 197, 24, 0.08);
+	border-radius: $radius-full;
+	color: $color-accent;
+	flex-shrink: 0;
+}
+
+.featureCheckHighlighted {
+	background: rgba(245, 197, 24, 0.15);
+}
+
+.cta {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 14px $space-8;
+	border-radius: $radius-full;
+	font-weight: $font-weight-bold;
+	font-size: $font-size-base;
+	text-decoration: none;
+	transition: all $transition-base;
+}
+
+.ctaRegular {
+	background: $color-bg-secondary;
+	color: $color-white;
+	border: 1px solid $color-border;
+
+	&:hover {
+		background: $color-bg-card-alt;
+		border-color: $color-border-light;
+		transform: translateY(-1px);
+	}
+}
+
+.ctaHighlighted {
+	background: $color-accent;
+	color: $color-bg-primary;
+
+	&:hover {
+		background: $color-accent-dark;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(245, 197, 24, 0.35);
+	}
+}
+
+.bottomNote {
+	text-align: center;
+	font-size: $font-size-sm;
+	color: $color-text-secondary;
+
+	strong {
+		color: $color-white;
+	}
+}

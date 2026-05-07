@@ -1,0 +1,216 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { padding-top: $navbar-height; }
+
+// ─── Hero ──────────────────────────────────────────────────────────────────────
+.hero {
+  background: linear-gradient(180deg, rgba(245,197,24,0.06) 0%, transparent 100%);
+  border-bottom: 1px solid $color-border;
+  padding: $space-16 0 $space-10;
+}
+.heroInner {
+  @include container;
+  max-width: 800px;
+}
+.backBtn {
+  display: inline-block;
+  color: $color-white-60;
+  font-size: $font-size-sm;
+  margin-bottom: $space-6;
+  transition: color $transition-base;
+  &:hover { color: $color-accent; }
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-4;
+}
+.category {
+  padding: 4px 12px;
+  background: rgba(245,197,24,0.15);
+  color: $color-accent;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+.date, .readTime { font-size: $font-size-sm; color: $color-white-40; }
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  line-height: 1.2;
+  margin-bottom: $space-6;
+}
+.authorRow {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  flex-wrap: wrap;
+}
+.avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.authorLabel { display: block; font-size: $font-size-xs; color: $color-white-40; }
+.authorName { font-size: $font-size-sm; font-weight: $font-weight-semibold; color: $color-white; }
+.shareBtn {
+  @include btn-reset;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-left: auto;
+  padding: $space-2 $space-4;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  color: $color-white-60;
+  background: $color-white-05;
+  cursor: pointer;
+  transition: all $transition-base;
+  &:hover { color: $color-white; border-color: $color-border-light; }
+}
+
+// ─── Cover ──────────────────────────────────────────────────────────────────────
+.cover {
+  @include container;
+  max-width: 900px;
+  padding-top: $space-8;
+  padding-bottom: $space-8;
+}
+.coverImg {
+  width: 100%;
+  height: clamp(220px, 45vw, 480px);
+  object-fit: cover;
+  border-radius: $radius-xl;
+}
+
+// ─── Body ──────────────────────────────────────────────────────────────────────
+.body {
+  @include container;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: $space-12;
+  padding-bottom: $space-20;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Table of contents
+.toc {
+  position: sticky;
+  top: calc(#{$navbar-height} + #{$space-8});
+  height: fit-content;
+  @media (max-width: 768px) { display: none; }
+}
+.tocTitle {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $color-white-40;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $space-4;
+}
+.tocList { list-style: none; display: flex; flex-direction: column; gap: $space-2; }
+.tocItem {}
+.tocLink {
+  font-size: $font-size-sm;
+  color: $color-white-60;
+  transition: color $transition-base;
+  &:hover { color: $color-accent; }
+}
+
+// Article
+.article {}
+.lead {
+  font-size: $font-size-lg;
+  color: $color-white-80;
+  line-height: 1.7;
+  border-left: 3px solid $color-accent;
+  padding-left: $space-5;
+  margin-bottom: $space-8;
+}
+.h2 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin: $space-10 0 $space-4;
+}
+.p {
+  font-size: $font-size-base;
+  color: $color-white-60;
+  line-height: 1.8;
+  margin-bottom: $space-5;
+}
+.list {
+  padding-left: $space-6;
+  margin-bottom: $space-5;
+  li {
+    color: $color-white-60;
+    line-height: 1.8;
+    margin-bottom: $space-2;
+  }
+}
+.callout {
+  background: rgba(245,197,24,0.08);
+  border: 1px solid rgba(245,197,24,0.25);
+  border-radius: $radius-lg;
+  padding: $space-4 $space-5;
+  color: $color-white-80;
+  font-size: $font-size-sm;
+  margin: $space-6 0;
+}
+
+// ─── Related ────────────────────────────────────────────────────────────────────
+.related {
+  background: $color-bg-secondary;
+  border-top: 1px solid $color-border;
+  padding: $space-16 0;
+}
+.relatedInner { @include container; }
+.relatedTitle {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-8;
+}
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-6;
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+.relatedCard {
+  display: block;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  transition: all $transition-base;
+  &:hover { transform: translateY(-4px); border-color: $color-border-light; }
+}
+.relatedImg { width: 100%; height: 160px; object-fit: cover; }
+.relatedContent { padding: $space-4; }
+.relatedCategory {
+  font-size: $font-size-xs;
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  display: block;
+  margin-bottom: $space-2;
+}
+.relatedPostTitle {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  margin-bottom: $space-3;
+  line-height: 1.4;
+}
+.relatedMeta {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-xs;
+  color: $color-white-40;
+}
+.relatedAvatar { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }

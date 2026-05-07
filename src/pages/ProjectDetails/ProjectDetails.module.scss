@@ -1,0 +1,112 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { padding-top: $navbar-height; }
+
+.hero {
+  background: linear-gradient(180deg, rgba(245,197,24,0.06) 0%, transparent 100%);
+  border-bottom: 1px solid $color-border;
+  padding: $space-16 0 $space-12;
+}
+.heroInner { @include container; max-width: 800px; }
+.backBtn {
+  display: inline-block;
+  color: $color-white-60;
+  font-size: $font-size-sm;
+  margin-bottom: $space-6;
+  transition: color $transition-base;
+  &:hover { color: $color-accent; }
+}
+.category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(245,197,24,0.12);
+  color: $color-accent;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $space-4;
+}
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-4;
+}
+.desc { font-size: $font-size-lg; color: $color-white-60; line-height: 1.7; margin-bottom: $space-5; }
+.tags { display: flex; flex-wrap: wrap; gap: $space-2; }
+.tag {
+  padding: 4px 12px;
+  background: $color-white-05;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  color: $color-white-60;
+}
+
+.cover { @include container; max-width: 1000px; padding-top: $space-8; padding-bottom: $space-8; }
+.coverImg { width: 100%; height: clamp(250px, 45vw, 500px); object-fit: cover; border-radius: $radius-xl; }
+
+.body { @include container; max-width: 800px; padding-bottom: $space-20; }
+.section { margin-bottom: $space-12; }
+.sectionTitle {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-5;
+  padding-bottom: $space-3;
+  border-bottom: 1px solid $color-border;
+}
+.p { font-size: $font-size-base; color: $color-white-60; line-height: 1.8; margin-bottom: $space-4; }
+
+.results { margin-bottom: $space-12; }
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-4;
+  @media (max-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+}
+.resultCard {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: $space-6 $space-4;
+  text-align: center;
+}
+.resultVal { display: block; font-size: $font-size-2xl; font-weight: $font-weight-bold; color: $color-accent; margin-bottom: $space-1; }
+.resultLbl { font-size: $font-size-xs; color: $color-white-60; }
+
+.techGrid { display: flex; flex-wrap: wrap; gap: $space-3; }
+.techBadge {
+  padding: $space-2 $space-4;
+  background: $color-bg-secondary;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-white-80;
+}
+
+.actions { display: flex; gap: $space-4; flex-wrap: wrap; margin-top: $space-10; }
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-3 $space-8;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-weight: $font-weight-bold;
+  transition: all $transition-base;
+  &:hover { background: $color-accent-dark; transform: translateY(-2px); }
+}
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-3 $space-8;
+  border: 1px solid $color-border;
+  color: $color-white;
+  border-radius: $radius-full;
+  font-weight: $font-weight-medium;
+  transition: all $transition-base;
+  &:hover { border-color: $color-accent; color: $color-accent; }
+}

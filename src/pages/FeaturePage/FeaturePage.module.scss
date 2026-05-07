@@ -1,0 +1,168 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  padding: calc(#{$navbar-height} + #{$space-16}) 0 $space-20;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(245, 197, 24, 0.07) 0%, transparent 60%);
+}
+
+.heroContainer {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-6;
+  position: relative;
+  z-index: 1;
+}
+
+.label { @include section-label; }
+.accent { color: $color-accent; }
+
+.heroTitle {
+  font-size: clamp(#{$font-size-3xl}, 5vw, #{$font-size-5xl});
+  font-weight: $font-weight-black;
+  letter-spacing: -0.03em;
+  line-height: $line-height-tight;
+  max-width: 800px;
+}
+
+.heroDesc {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 600px;
+  line-height: $line-height-relaxed;
+}
+
+.heroCta {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  text-decoration: none;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-accent-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.35);
+  }
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  background: transparent;
+  color: $color-white-80;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+  text-decoration: none;
+  transition: all $transition-base;
+
+  &:hover {
+    color: $color-white;
+    border-color: $color-border-light;
+    background: $color-white-05;
+  }
+}
+
+// ─── Integrations ─────────────────────────────────────────────────────────────
+.integrations {
+  @include section-padding;
+  background: $color-bg-secondary;
+  border-top: 1px solid $color-border;
+}
+
+.intContainer {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $space-14;
+}
+
+.intHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-5;
+}
+
+.sectionTitle { @include section-title; }
+.sectionDesc { @include section-desc; max-width: 480px; }
+
+.intGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @include md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.intCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-6;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  text-align: center;
+  transition: all $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-border-light;
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.intIcon {
+  font-size: 32px;
+}
+
+.intName {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+}
+
+.intMore {
+  text-align: center;
+}
+
+.moreLink {
+  font-size: $font-size-base;
+  color: $color-accent;
+  font-weight: $font-weight-medium;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-accent-dark;
+  }
+}

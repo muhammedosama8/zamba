@@ -1,0 +1,260 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  padding: calc(#{$navbar-height} + #{$space-16}) 0 $space-16;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(245, 197, 24, 0.06) 0%, transparent 60%);
+}
+
+.heroContainer {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-5;
+  position: relative;
+  z-index: 1;
+}
+
+.label { @include section-label; }
+.accent { color: $color-accent; }
+
+.heroTitle {
+  font-size: clamp(#{$font-size-3xl}, 5vw, #{$font-size-5xl});
+  font-weight: $font-weight-black;
+  letter-spacing: -0.03em;
+  line-height: $line-height-tight;
+}
+
+.heroDesc {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 500px;
+  line-height: $line-height-relaxed;
+}
+
+// ─── Contact section ──────────────────────────────────────────────────────────
+.contactSection {
+  @include section-padding;
+  border-top: 1px solid $color-border;
+}
+
+.contactContainer {
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-14;
+
+  @include xl {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+}
+
+// ─── Info ─────────────────────────────────────────────────────────────────────
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.infoTitle {
+  font-size: clamp(#{$font-size-2xl}, 3vw, #{$font-size-3xl});
+  font-weight: $font-weight-bold;
+  line-height: $line-height-snug;
+}
+
+.infoDesc {
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+}
+
+.infoItems {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+}
+
+.infoIcon {
+  @include flex-center;
+  width: 48px;
+  height: 48px;
+  background: rgba(245, 197, 24, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.15);
+  border-radius: $radius-lg;
+  color: $color-accent;
+  flex-shrink: 0;
+}
+
+.infoLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: 4px;
+}
+
+.infoValue {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-white;
+  transition: color $transition-base;
+
+  a { text-decoration: none; }
+  &:hover { color: $color-accent; }
+}
+
+// ─── Form ─────────────────────────────────────────────────────────────────────
+.formWrap {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $color-accent, transparent);
+    opacity: 0.5;
+    border-radius: $radius-2xl $radius-2xl 0 0;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.formTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-3;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-5;
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.label2 {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-white-80;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  background: $color-bg-secondary;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-3 $space-4;
+  font-size: $font-size-base;
+  color: $color-white;
+  font-family: $font-family;
+  transition: border-color $transition-base, box-shadow $transition-base;
+  resize: none;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.08);
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitBtn {
+  @include btn-reset;
+  @include flex-center;
+  gap: $space-3;
+  padding: 14px 32px;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  transition: all $transition-base;
+  align-self: flex-start;
+
+  &:hover {
+    background: $color-accent-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.3);
+  }
+}
+
+// ─── Success ──────────────────────────────────────────────────────────────────
+.successMsg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-4;
+  padding: $space-12;
+}
+
+.successIcon {
+  font-size: 48px;
+}
+
+.successMsg h3 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+}
+
+.successMsg p {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+}
+
+.resetBtn {
+  @include btn-reset;
+  color: $color-accent;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  margin-top: $space-2;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

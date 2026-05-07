@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  @include flex-center;
+  min-height: 100vh;
+  padding: $space-8;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-5;
+}
+
+.code {
+  font-size: clamp(80px, 15vw, 160px);
+  font-weight: $font-weight-black;
+  color: $color-accent;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  opacity: 0.7;
+}
+
+.title {
+  font-size: clamp(#{$font-size-2xl}, 4vw, #{$font-size-4xl});
+  font-weight: $font-weight-bold;
+  color: $color-white;
+}
+
+.desc {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 400px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  text-decoration: none;
+  transition: all $transition-base;
+  margin-top: $space-3;
+
+  &:hover {
+    background: $color-accent-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.3);
+  }
+}

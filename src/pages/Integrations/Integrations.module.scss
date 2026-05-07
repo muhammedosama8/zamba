@@ -1,0 +1,175 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { padding-top: $navbar-height; }
+
+.hero {
+  background: linear-gradient(180deg, rgba(245,197,24,0.06) 0%, transparent 100%);
+  border-bottom: 1px solid $color-border;
+  padding: $space-20 0 $space-14;
+  text-align: center;
+}
+.heroInner { @include container; }
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(245,197,24,0.12);
+  border: 1px solid rgba(245,197,24,0.3);
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  margin-bottom: $space-5;
+}
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-4;
+}
+.accent { color: $color-accent; }
+.desc {
+  max-width: 560px;
+  margin: 0 auto $space-8;
+  color: $color-white-60;
+  font-size: $font-size-lg;
+  line-height: 1.7;
+}
+
+.searchWrap {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.searchIcon {
+  position: absolute;
+  left: $space-4;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-white-40;
+  pointer-events: none;
+}
+.search {
+  width: 100%;
+  padding: $space-3 $space-4 $space-3 $space-10;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  color: $color-white;
+  font-size: $font-size-base;
+  outline: none;
+  transition: border-color $transition-base;
+
+  &::placeholder { color: $color-white-40; }
+  &:focus { border-color: rgba(245,197,24,0.4); }
+}
+
+.content { padding: $space-12 0 $space-20; }
+.container { @include container; }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  justify-content: center;
+  margin-bottom: $space-10;
+}
+.filterBtn {
+  @include btn-reset;
+  padding: $space-2 $space-5;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-white-60;
+  border: 1px solid $color-border;
+  background: transparent;
+  cursor: pointer;
+  transition: all $transition-base;
+  &:hover { color: $color-white; border-color: $color-border-light; }
+}
+.filterActive {
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-color: $color-accent;
+  font-weight: $font-weight-bold;
+  &:hover { color: $color-bg-primary; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-5;
+
+  @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: $space-5;
+  text-decoration: none;
+  transition: all $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    border-color: rgba(245,197,24,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+}
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: $space-4;
+}
+.icon { font-size: 2.5rem; line-height: 1; }
+.badges { display: flex; flex-direction: column; align-items: flex-end; gap: $space-1; }
+.popularBadge {
+  padding: 2px 8px;
+  background: rgba(245,197,24,0.12);
+  border: 1px solid rgba(245,197,24,0.3);
+  border-radius: $radius-full;
+  font-size: 10px;
+  font-weight: $font-weight-bold;
+  color: $color-accent;
+  white-space: nowrap;
+}
+.cardName {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-1;
+}
+.cardCategory {
+  font-size: $font-size-xs;
+  color: $color-white-40;
+  display: block;
+  margin-bottom: $space-3;
+}
+.cardDesc {
+  font-size: $font-size-sm;
+  color: $color-white-60;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: $space-4;
+}
+.connectBtn {
+  @include btn-reset;
+  width: 100%;
+  padding: $space-2 $space-4;
+  background: $color-accent;
+  color: $color-bg-primary;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-align: center;
+  &:hover { background: $color-accent-dark; }
+}

@@ -1,0 +1,125 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.btn {
+  @include btn-reset;
+  @include flex-center;
+  gap: $space-2;
+  border-radius: $radius-full;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.01em;
+  transition: all $transition-base;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity $transition-base;
+    border-radius: inherit;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  // ─── Sizes ─────────────────────────────────────────────────────────────────
+  &--sm {
+    padding: $space-2 $space-5;
+    font-size: $font-size-sm;
+    height: 38px;
+  }
+
+  &--md {
+    padding: $space-3 $space-8;
+    font-size: $font-size-base;
+    height: 52px;
+  }
+
+  &--lg {
+    padding: $space-4 $space-10;
+    font-size: $font-size-md;
+    height: 60px;
+  }
+
+  &--full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  // ─── Variants ──────────────────────────────────────────────────────────────
+  &--primary {
+    background: $color-accent;
+    color: $color-bg-primary;
+
+    &::before {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &:hover {
+      background: $color-accent-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 197, 24, 0.35);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--secondary {
+    background: $color-bg-card;
+    color: $color-white;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background: $color-bg-card-alt;
+      border-color: $color-border-light;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $color-accent;
+    border: 1.5px solid $color-accent;
+
+    &:hover {
+      background: $color-accent;
+      color: $color-bg-primary;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 197, 24, 0.25);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-white-80;
+
+    &:hover {
+      color: $color-white;
+      background: $color-white-05;
+    }
+  }
+
+  &--accent {
+    background: transparent;
+    color: $color-accent;
+    border: 1px solid rgba(245, 197, 24, 0.3);
+
+    &:hover {
+      background: rgba(245, 197, 24, 0.1);
+      border-color: $color-accent;
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 1.1em;
+}

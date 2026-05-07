@@ -1,0 +1,131 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  padding: calc(#{$navbar-height} + #{$space-16}) 0 $space-16;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(245, 197, 24, 0.06) 0%, transparent 60%);
+}
+
+.heroContainer {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-6;
+  position: relative;
+  z-index: 1;
+}
+
+.label { @include section-label; }
+.accent { color: $color-accent; }
+
+.heroTitle {
+  font-size: clamp(#{$font-size-3xl}, 5vw, #{$font-size-5xl});
+  font-weight: $font-weight-black;
+  letter-spacing: -0.03em;
+  line-height: $line-height-tight;
+}
+
+.heroDesc {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 500px;
+  line-height: $line-height-relaxed;
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
+.faq {
+  @include section-padding;
+  border-top: 1px solid $color-border;
+}
+
+.faqContainer {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.faqHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-4;
+}
+
+.sectionTitle { @include section-title; }
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.faqItem {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  transition: border-color $transition-base;
+
+  &.faqOpen {
+    border-color: rgba(245, 197, 24, 0.3);
+  }
+}
+
+.faqQuestion {
+  @include btn-reset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: $space-5 $space-6;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  text-align: left;
+  gap: $space-4;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.faqIcon {
+  color: $color-text-secondary;
+  flex-shrink: 0;
+  transition: color $transition-base;
+
+  .faqQuestion:hover & {
+    color: $color-accent;
+  }
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $transition-slow;
+
+  &Open {
+    max-height: 200px;
+  }
+
+  p {
+    padding: 0 $space-6 $space-5;
+    font-size: $font-size-base;
+    line-height: $line-height-relaxed;
+    color: $color-text-secondary;
+  }
+}
