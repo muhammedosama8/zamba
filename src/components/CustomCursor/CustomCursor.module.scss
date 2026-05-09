@@ -4,33 +4,33 @@
   left: 0;
   pointer-events: none;
   z-index: 99998;
-  mix-blend-mode: difference;
 }
 
 .dot {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #F5C518;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  transition: width 0.15s ease, height 0.15s ease;
 }
 
 .ring {
   position: absolute;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(245, 197, 24, 0.5);
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(245, 197, 24, 0.6);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.2s ease;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .expanded .ring {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(245, 197, 24, 0.8);
+  width: 48px;
+  height: 48px;
+  border-color: #F5C518;
+  background: rgba(245, 197, 24, 0.08);
 }
 
 .expanded .dot {

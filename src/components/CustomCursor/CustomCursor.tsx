@@ -24,23 +24,21 @@ const CustomCursor: React.FC = () => {
       yRing(e.clientY);
     };
 
-    const onEnter = () => setHovering(true);
-    const onLeave = () => setHovering(false);
+    const onEnter = (e: MouseEvent) => {
+      if ((e.target as Element).closest('a, button, [data-hover]')) setHovering(true);
+    };
+    const onLeave = (e: MouseEvent) => {
+      if ((e.target as Element).closest('a, button, [data-hover]')) setHovering(false);
+    };
 
     window.addEventListener('mousemove', onMove);
-
-    const interactives = document.querySelectorAll('a, button, [data-hover]');
-    interactives.forEach((el) => {
-      el.addEventListener('mouseenter', onEnter);
-      el.addEventListener('mouseleave', onLeave);
-    });
+    document.addEventListener('mouseover', onEnter);
+    document.addEventListener('mouseout', onLeave);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
-      interactives.forEach((el) => {
-        el.removeEventListener('mouseenter', onEnter);
-        el.removeEventListener('mouseleave', onLeave);
-      });
+      document.removeEventListener('mouseover', onEnter);
+      document.removeEventListener('mouseout', onLeave);
     };
   }, []);
 
