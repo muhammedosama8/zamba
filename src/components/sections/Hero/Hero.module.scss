@@ -1,409 +1,447 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .hero {
-  position: relative;
-  min-height: 100vh;
-  padding-top: calc(#{$navbar-height} + #{$space-16});
-  padding-bottom: $space-20;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+	position: relative;
+	min-height: 100vh;
+	padding-top: calc(#{$navbar-height} + #{$space-16});
+	padding-bottom: $space-20;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
 }
 
 // ─── Background ───────────────────────────────────────────────────────────────
 .bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
 }
 
 .blob {
-  position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 60vw;
-  height: 60vw;
-  max-width: 800px;
-  max-height: 800px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(245, 197, 24, 0.12) 0%,
-    rgba(245, 197, 24, 0.04) 40%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+	position: absolute;
+	top: -20%;
+	right: -10%;
+	width: 60vw;
+	height: 60vw;
+	max-width: 800px;
+	max-height: 800px;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(245, 197, 24, 0.12) 0%,
+		rgba(245, 197, 24, 0.04) 40%,
+		transparent 70%
+	);
+	border-radius: 50%;
+	transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 80%);
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+	background-size: 60px 60px;
+	mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 80%);
 }
 
 .gradientBottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(to top, $color-bg-primary, transparent);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 200px;
+	background: linear-gradient(to top, $color-bg-primary, transparent);
 }
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
 .container {
-  @include container;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-12;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+	@include container;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: $space-12;
+	align-items: center;
+	position: relative;
+	z-index: 1;
 
-  @include xl {
-    grid-template-columns: 1fr 1fr;
-    gap: $space-16;
-  }
+	@include xl {
+		grid-template-columns: 1fr 1fr;
+		gap: $space-16;
+	}
 }
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: $space-6;
-  animation: contentIn 0.8s ease forwards;
+	display: flex;
+	flex-direction: column;
+	gap: $space-6;
+	animation: contentIn 0.8s ease forwards;
 }
 
 @keyframes contentIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(40px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
-  padding: 6px 14px;
-  background: rgba(245, 197, 24, 0.1);
-  border: 1px solid rgba(245, 197, 24, 0.25);
-  border-radius: $radius-full;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  color: $color-accent;
+	display: inline-flex;
+	align-items: center;
+	gap: $space-2;
+	padding: 6px 14px;
+	background: rgba(245, 197, 24, 0.1);
+	border: 1px solid rgba(245, 197, 24, 0.25);
+	border-radius: $radius-full;
+	font-size: $font-size-sm;
+	font-weight: $font-weight-medium;
+	color: $color-accent;
 }
 
 .badgeDot {
-  width: 6px;
-  height: 6px;
-  background: $color-accent;
-  border-radius: $radius-full;
-  animation: pulse 2s infinite;
+	width: 6px;
+	height: 6px;
+	background: $color-accent;
+	border-radius: $radius-full;
+	animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.5;
+		transform: scale(0.8);
+	}
 }
 
 .headline {
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: $font-weight-black;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: $color-white;
+	font-size: clamp(36px, 5vw, 64px);
+	font-weight: $font-weight-black;
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+	color: $color-white;
 }
 
 .accent {
-  color: $color-accent;
-  position: relative;
+	color: $color-accent;
+	position: relative;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: $color-accent;
-    border-radius: $radius-full;
-    opacity: 0.4;
-  }
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 2px;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: $color-accent;
+		border-radius: $radius-full;
+		opacity: 0.4;
+	}
 }
 
 .subtext {
-  font-size: clamp($font-size-base, 1.5vw, $font-size-md);
-  line-height: $line-height-relaxed;
-  color: $color-text-secondary;
-  max-width: 520px;
+	font-size: clamp($font-size-base, 1.5vw, $font-size-md);
+	line-height: $line-height-relaxed;
+	color: $color-text-secondary;
+	max-width: 520px;
 }
 
 .stars {
-  display: flex;
-  align-items: center;
-  gap: $space-3;
+	display: flex;
+	align-items: center;
+	gap: $space-3;
 }
 
 .starIcons {
-  display: flex;
-  gap: 2px;
+	display: flex;
+	gap: 2px;
 }
 
 .star {
-  color: $color-accent;
+	color: $color-accent;
 }
 
 .starText {
-  font-size: $font-size-sm;
-  color: $color-text-secondary;
+	font-size: $font-size-sm;
+	color: $color-text-secondary;
 
-  strong { color: $color-white; }
+	strong {
+		color: $color-white;
+	}
 }
 
 .cta {
-  display: flex;
-  align-items: center;
-  gap: $space-5;
-  flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+	gap: $space-5;
+	flex-wrap: wrap;
 }
 
 .primaryBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-3;
-  padding: 14px 32px;
-  background: $color-accent;
-  color: $color-bg-primary;
-  border-radius: $radius-full;
-  font-size: $font-size-md;
-  font-weight: $font-weight-bold;
-  transition: all $transition-base;
-  text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: $space-3;
+	padding: 14px 32px;
+	background: $color-accent;
+	color: $color-bg-primary;
+	border-radius: $radius-full;
+	font-size: $font-size-md;
+	font-weight: $font-weight-bold;
+	transition: all $transition-base;
+	text-decoration: none;
 
-  &:hover {
-    background: $color-accent-dark;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(245, 197, 24, 0.4);
-  }
+	&:hover {
+		background: $color-accent-dark;
+		transform: translateY(-3px);
+		box-shadow: 0 12px 32px rgba(245, 197, 24, 0.4);
+	}
 }
 
 .watchBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-3;
-  font-size: $font-size-base;
-  font-weight: $font-weight-medium;
-  color: $color-white-80;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color $transition-base;
+	display: inline-flex;
+	align-items: center;
+	gap: $space-3;
+	font-size: $font-size-base;
+	font-weight: $font-weight-medium;
+	color: $color-white-80;
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: color $transition-base;
 
-  &:hover {
-    color: $color-white;
+	&:hover {
+		color: $color-white;
 
-    .playBtn {
-      background: $color-accent;
-      color: $color-bg-primary;
-    }
-  }
+		.playBtn {
+			background: $color-accent;
+			color: $color-bg-primary;
+		}
+	}
 }
 
 .playBtn {
-  @include flex-center;
-  width: 44px;
-  height: 44px;
-  border-radius: $radius-full;
-  background: $color-white-05;
-  border: 1px solid $color-border;
-  color: $color-white;
-  transition: all $transition-base;
+	@include flex-center;
+	width: 44px;
+	height: 44px;
+	border-radius: $radius-full;
+	background: $color-white-05;
+	border: 1px solid $color-border;
+	color: $color-white;
+	transition: all $transition-base;
 }
 
 // ─── Visual ───────────────────────────────────────────────────────────────────
 .visual {
-  position: relative;
-  animation: visualIn 1s ease 0.3s forwards;
-  opacity: 0;
+	position: relative;
+	animation: visualIn 1s ease 0.3s forwards;
+	opacity: 0;
 }
 
 @keyframes visualIn {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+	from {
+		opacity: 0;
+		transform: translateX(40px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 .visualCard {
-  background: $color-bg-card;
-  border: 1px solid $color-border;
-  border-radius: $radius-2xl;
-  padding: $space-6;
-  box-shadow: $shadow-xl;
-  position: relative;
-  overflow: hidden;
+	background: $color-bg-card;
+	border: 1px solid $color-border;
+	border-radius: $radius-2xl;
+	padding: $space-6;
+	box-shadow: $shadow-xl;
+	position: relative;
+	// overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, $color-accent, transparent);
-    opacity: 0.6;
-  }
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, $color-accent, transparent);
+		opacity: 0.6;
+	}
 }
 
 .dashboardHeader {
-  display: flex;
-  align-items: center;
-  gap: $space-3;
-  margin-bottom: $space-5;
+	display: flex;
+	align-items: center;
+	gap: $space-3;
+	margin-bottom: $space-5;
 }
 
 .dots {
-  display: flex;
-  gap: $space-1;
+	display: flex;
+	gap: $space-1;
 
-  span {
-    width: 10px;
-    height: 10px;
-    border-radius: $radius-full;
+	span {
+		width: 10px;
+		height: 10px;
+		border-radius: $radius-full;
 
-    &:nth-child(1) { background: #FF5F57; }
-    &:nth-child(2) { background: #FFBD2E; }
-    &:nth-child(3) { background: #28CA41; }
-  }
+		&:nth-child(1) {
+			background: #ff5f57;
+		}
+		&:nth-child(2) {
+			background: #ffbd2e;
+		}
+		&:nth-child(3) {
+			background: #28ca41;
+		}
+	}
 }
 
 .dashboardTitle {
-  font-size: $font-size-sm;
-  color: $color-text-secondary;
+	font-size: $font-size-sm;
+	color: $color-text-secondary;
 }
 
 .chartArea {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  height: 140px;
-  padding: $space-4 0;
-  margin-bottom: $space-5;
+	display: flex;
+	align-items: flex-end;
+	gap: 6px;
+	height: 140px;
+	padding: $space-4 0;
+	margin-bottom: $space-5;
 }
 
 .bar {
-  flex: 1;
-  background: linear-gradient(to top, $color-accent, rgba(245, 197, 24, 0.3));
-  border-radius: $radius-sm $radius-sm 0 0;
-  animation: barGrow 0.8s ease forwards;
-  transform-origin: bottom;
+	flex: 1;
+	background: linear-gradient(to top, $color-accent, rgba(245, 197, 24, 0.3));
+	border-radius: $radius-sm $radius-sm 0 0;
+	animation: barGrow 0.8s ease forwards;
+	transform-origin: bottom;
 
-  @keyframes barGrow {
-    from { transform: scaleY(0); }
-    to { transform: scaleY(1); }
-  }
+	@keyframes barGrow {
+		from {
+			transform: scaleY(0);
+		}
+		to {
+			transform: scaleY(1);
+		}
+	}
 }
 
 .metricsRow {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $space-3;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: $space-3;
 }
 
 .metric {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: $space-3;
-  background: $color-bg-secondary;
-  border-radius: $radius-md;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: $space-3;
+	background: $color-bg-secondary;
+	border-radius: $radius-md;
 }
 
 .metricVal {
-  font-size: $font-size-lg;
-  font-weight: $font-weight-bold;
-  color: $color-white;
+	font-size: $font-size-lg;
+	font-weight: $font-weight-bold;
+	color: $color-white;
 }
 
 .metricLbl {
-  font-size: $font-size-xs;
-  color: $color-text-secondary;
+	font-size: $font-size-xs;
+	color: $color-text-secondary;
 }
 
 // ─── Floating stat cards ──────────────────────────────────────────────────────
 .statCard {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  padding: $space-3 $space-4;
-  background: $color-bg-secondary;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-md;
-  animation: floatCard 3s ease-in-out infinite;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	padding: $space-3 $space-4;
+	background: $color-bg-secondary;
+	border: 1px solid $color-border;
+	border-radius: $radius-lg;
+	box-shadow: $shadow-md;
+	animation: floatCard 3s ease-in-out infinite;
 
-  &:nth-child(1) {
-    top: -20px;
-    right: -20px;
-    animation-delay: 0s;
-  }
+	&:nth-child(1) {
+		top: -20px;
+		right: -20px;
+		animation-delay: 0s;
+	}
 
-  &:nth-child(2) {
-    bottom: -20px;
-    left: -20px;
-    animation-delay: 1.5s;
-  }
+	&:nth-child(2) {
+		bottom: -20px;
+		left: -20px;
+		animation-delay: 1.5s;
+	}
 }
 
 @keyframes floatCard {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+	}
 }
 
 .statValue {
-  font-size: $font-size-xl;
-  font-weight: $font-weight-bold;
-  color: $color-accent;
+	font-size: $font-size-xl;
+	font-weight: $font-weight-bold;
+	color: $color-accent;
 }
 
 .statLabel {
-  font-size: $font-size-xs;
-  color: $color-text-secondary;
+	font-size: $font-size-xs;
+	color: $color-text-secondary;
 }
 
 // ─── Avatar stack ─────────────────────────────────────────────────────────────
 .avatarStack {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: $space-4;
-  right: $space-4;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	bottom: $space-4;
+	right: $space-4;
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: $radius-full;
-  border: 2px solid $color-bg-card;
-  margin-left: -8px;
-  object-fit: cover;
+	width: 32px;
+	height: 32px;
+	border-radius: $radius-full;
+	border: 2px solid $color-bg-card;
+	margin-left: -8px;
+	object-fit: cover;
 
-  &:first-child { margin-left: 0; }
+	&:first-child {
+		margin-left: 0;
+	}
 }
 
 .avatarMore {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: $radius-full;
-  border: 2px solid $color-bg-card;
-  background: $color-accent;
-  color: $color-bg-primary;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
-  margin-left: -8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: $radius-full;
+	border: 2px solid $color-bg-card;
+	background: $color-accent;
+	color: $color-bg-primary;
+	font-size: $font-size-xs;
+	font-weight: $font-weight-bold;
+	margin-left: -8px;
 }
