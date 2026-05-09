@@ -43,13 +43,6 @@ const pageVariants = {
 };
 
 // ── Scroll to top on route change ────────────────────────────────────────────
-function ScrollToTop() {
-	const { pathname } = useLocation();
-	useEffect(() => {
-		window.scrollTo({ top: 0 });
-	}, [pathname]);
-	return null;
-}
 
 // ── GSAP ScrollTrigger init ──────────────────────────────────────────────────
 function GSAPScrollInit() {
@@ -89,9 +82,14 @@ function Layout({ children }: { children: React.ReactNode }) {
 // ── Animated routes ──────────────────────────────────────────────────────────
 function AnimatedRoutes() {
 	const location = useLocation();
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
+
 	return (
 		<Layout>
-			<ScrollToTop />
 			<GSAPScrollInit />
 			{/* <AnimatePresence mode="wait"> */}
 			<Routes location={location} key={location.pathname}>
