@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Pricing.module.scss';
 import { useInView } from '../../../hooks/useScrollAnimation';
 import { useLang } from '../../../context/LanguageContext';
+import gsap from 'gsap';
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -28,6 +29,83 @@ const buildWhatsAppUrl = (planName: string, price: number, annual: boolean) => {
   const message = `Hi! I'm interested in the *${planName}* plan (${billing} – $${price}/mo). Please get me started!`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 };
+
+// ── 3-D tilt on each pricing card ────────────────────────────────────────────
+function useTiltCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    gsap.set(el, { transformPerspective: 900, transformStyle: 'preserve-3d' });
+    const xTo = gsap.quickTo(el, 'rotateX', { duration: 0.5, ease: 'power2.out' });
+    const yTo = gsap.quickTo(el, 'rotateY', { duration: 0.5, ease: 'power2.out' });
+    const sTo = gsap.quickTo(el, 'scale',   { duration: 0.4, ease: 'power2.out' });
+
+    const onMove = (e: MouseEvent) => {
+      const r  = el.getBoundingClientRect();
+      const dx = (e.clientX - r.left  - r.width  / 2) / (r.width  / 2);
+      const dy = (e.clientY - r.top   - r.height / 2) / (r.height / 2);
+      yTo(dx * 10); xTo(-dy * 10); sTo(1.03);
+    };
+    const onLeave = () => { xTo(0); yTo(0); sTo(1); };
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseleave', onLeave);
+    return () => { el.removeEventListener('mousemove', onMove); el.removeEventListener('mouseleave', onLeave); };
+  }, []);
+  return ref;
+}
+
+function PricingCard({ plan, index, annual, p }: {
+  plan: { name: string; desc: string; features: readonly string[]; cta: string; highlighted: boolean };
+  index: number;
+  annual: boolean;
+  p: { mostPopular: string; perMonth: string; billedAs: string; perYear: string };
+}) {
+  const cardRef = useTiltCard();
+  const price   = annual ? planPrices[index].yearly / 12 : planPrices[index].monthly;
+  return (
+    <div
+      ref={cardRef}
+      className={`${styles.card} ${plan.highlighted ? styles.highlighted : ''} fade-up delay-${index + 1}`}
+    >
+      {plan.highlighted && (
+        <div className={styles.popularBadge}><StarIcon /> {p.mostPopular}</div>
+      )}
+      <div className={styles.planHeader}>
+        <span className={styles.planName}>{plan.name}</span>
+        <p className={styles.planDesc}>{plan.desc}</p>
+      </div>
+      <div className={styles.priceWrap}>
+        <span className={styles.currency}>$</span>
+        <span className={styles.price}>{price}</span>
+        <span className={styles.period}>{p.perMonth}</span>
+      </div>
+      {annual && (
+        <p className={styles.annualNote}>
+          {p.billedAs} ${planPrices[index].yearly}{p.perYear}
+        </p>
+      )}
+      <ul className={styles.features}>
+        {plan.features.map((feature, i) => (
+          <li key={i} className={styles.feature}>
+            <span className={`${styles.featureCheck} ${plan.highlighted ? styles.featureCheckHighlighted : ''}`}>
+              <CheckIcon />
+            </span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <a
+        href={buildWhatsAppUrl(plan.name, price, annual)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.cta} ${plan.highlighted ? styles.ctaHighlighted : styles.ctaRegular}`}
+      >
+        {plan.cta}
+      </a>
+    </div>
+  );
+}
 
 const Pricing: React.FC = () => {
   const [annual, setAnnual] = useState(false);
@@ -63,59 +141,13 @@ const Pricing: React.FC = () => {
 
         <div className={styles.grid}>
           {p.plans.map((plan, index) => (
-            <div
+            <PricingCard
               key={index}
-              className={`${styles.card} ${plan.highlighted ? styles.highlighted : ''} fade-up delay-${index + 1}`}
-            >
-              {plan.highlighted && (
-                <div className={styles.popularBadge}>
-                  <StarIcon /> {p.mostPopular}
-                </div>
-              )}
-
-              <div className={styles.planHeader}>
-                <span className={styles.planName}>{plan.name}</span>
-                <p className={styles.planDesc}>{plan.desc}</p>
-              </div>
-
-              <div className={styles.priceWrap}>
-                <span className={styles.currency}>$</span>
-                <span className={styles.price}>
-                  {annual ? planPrices[index].yearly / 12 : planPrices[index].monthly}
-                </span>
-                <span className={styles.period}>{p.perMonth}</span>
-              </div>
-
-              {annual && (
-                <p className={styles.annualNote}>
-                  {p.billedAs} ${planPrices[index].yearly}{p.perYear}
-                </p>
-              )}
-
-              <ul className={styles.features}>
-                {plan.features.map((feature, i) => (
-                  <li key={i} className={styles.feature}>
-                    <span className={`${styles.featureCheck} ${plan.highlighted ? styles.featureCheckHighlighted : ''}`}>
-                      <CheckIcon />
-                    </span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={buildWhatsAppUrl(
-                  plan.name,
-                  annual ? planPrices[index].yearly / 12 : planPrices[index].monthly,
-                  annual
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.cta} ${plan.highlighted ? styles.ctaHighlighted : styles.ctaRegular}`}
-              >
-                {plan.cta}
-              </a>
-            </div>
+              plan={plan}
+              index={index}
+              annual={annual}
+              p={{ mostPopular: p.mostPopular, perMonth: p.perMonth, billedAs: p.billedAs, perYear: p.perYear }}
+            />
           ))}
         </div>
 

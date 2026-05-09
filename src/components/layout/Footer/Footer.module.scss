@@ -1,125 +1,125 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .footer {
-  background: $color-bg-secondary;
-  border-top: 1px solid $color-border;
+	background: $color-bg-secondary;
+	border-top: 1px solid $color-border;
 }
 
 .container {
-  @include container;
-  padding-top: $space-16;
-  padding-bottom: $space-12;
+	@include container;
+	padding-top: $space-16;
+	padding-bottom: $space-12;
 }
 
 .top {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-10;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: $space-10;
 
-  @include md {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	@include md {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-  @include xl {
-    grid-template-columns: 1.8fr 1fr 1fr 1fr;
-    gap: $space-8;
-  }
+	@include xl {
+		grid-template-columns: 1.8fr 1fr 1fr;
+		gap: $space-8;
+	}
 }
 
 // ─── Brand ────────────────────────────────────────────────────────────────────
 .brand {
-  display: flex;
-  flex-direction: column;
-  gap: $space-5;
+	display: flex;
+	flex-direction: column;
+	gap: $space-5;
 }
 
 .logo {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-3;
-  text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: $space-3;
+	text-decoration: none;
 
-  span {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-bold;
-    color: $color-white;
-  }
+	span {
+		font-size: $font-size-xl;
+		font-weight: $font-weight-bold;
+		color: $color-white;
+	}
 }
 
 .tagline {
-  font-size: $font-size-sm;
-  line-height: $line-height-relaxed;
-  color: $color-text-secondary;
-  max-width: 300px;
+	font-size: $font-size-sm;
+	line-height: $line-height-relaxed;
+	color: $color-text-secondary;
+	max-width: 300px;
 }
 
 .socials {
-  display: flex;
-  gap: $space-3;
+	display: flex;
+	gap: $space-3;
 }
 
 .social {
-  @include flex-center;
-  width: 40px;
-  height: 40px;
-  border-radius: $radius-full;
-  background: $color-white-05;
-  border: 1px solid $color-border;
-  color: $color-text-secondary;
-  transition: all $transition-base;
+	@include flex-center;
+	width: 40px;
+	height: 40px;
+	border-radius: $radius-full;
+	background: $color-white-05;
+	border: 1px solid $color-border;
+	color: $color-text-secondary;
+	transition: all $transition-base;
 
-  &:hover {
-    background: $color-accent;
-    border-color: $color-accent;
-    color: $color-bg-primary;
-    transform: translateY(-2px);
-  }
+	&:hover {
+		background: $color-accent;
+		border-color: $color-accent;
+		color: $color-bg-primary;
+		transform: translateY(-2px);
+	}
 }
 
 // ─── Columns ──────────────────────────────────────────────────────────────────
 .column {
-  display: flex;
-  flex-direction: column;
-  gap: $space-5;
+	display: flex;
+	flex-direction: column;
+	gap: $space-5;
 }
 
 .columnTitle {
-  font-size: $font-size-md;
-  font-weight: $font-weight-semibold;
-  color: $color-white;
-  letter-spacing: -0.01em;
+	font-size: $font-size-md;
+	font-weight: $font-weight-semibold;
+	color: $color-white;
+	letter-spacing: -0.01em;
 }
 
 .columnLinks {
-  display: flex;
-  flex-direction: column;
-  gap: $space-3;
+	display: flex;
+	flex-direction: column;
+	gap: $space-3;
 }
 
 .columnLink {
-  font-size: $font-size-sm;
-  color: $color-text-secondary;
-  transition: color $transition-base;
-  line-height: 1;
+	font-size: $font-size-sm;
+	color: $color-text-secondary;
+	transition: color $transition-base;
+	line-height: 1;
 
-  &:hover {
-    color: $color-white;
-  }
+	&:hover {
+		color: $color-white;
+	}
 }
 
 // ─── Bottom bar ───────────────────────────────────────────────────────────────
 .bottom {
-  border-top: 1px solid $color-border;
+	border-top: 1px solid $color-border;
 }
 
 .bottomInner {
-  @include container;
-  @include flex-center;
-  height: 64px;
+	@include container;
+	@include flex-center;
+	height: 64px;
 }
 
 .copyright {
-  font-size: $font-size-sm;
-  color: $color-text-muted;
+	font-size: $font-size-sm;
+	color: $color-text-muted;
 }

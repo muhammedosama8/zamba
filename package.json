@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "animejs": "^4.4.1",
+    "gsap": "^3.15.0",
+    "motion": "^12.38.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.15.0",

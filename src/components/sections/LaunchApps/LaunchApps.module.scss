@@ -1,311 +1,329 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .section {
-  @include section-padding;
-  position: relative;
-  overflow: hidden;
+	@include section-padding;
+	position: relative;
+	overflow: hidden;
 }
 
 .container {
-  @include container;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-16;
-  align-items: center;
+	@include container;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: $space-16;
+	align-items: center;
 
-  @include xl {
-    grid-template-columns: 1fr 1fr;
-  }
+	@include xl {
+		grid-template-columns: 1fr 1fr;
+	}
 }
 
 // ─── Visual ───────────────────────────────────────────────────────────────────
 .visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  order: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	order: 2;
 
-  @include xl {
-    order: 1;
-  }
+	@include xl {
+		order: 1;
+	}
 }
 
 .phoneWrap {
-  position: relative;
-  width: 240px;
+	position: relative;
+	width: 240px;
 }
 
 .phone {
-  width: 240px;
-  background: $color-bg-card;
-  border: 1px solid $color-border;
-  border-radius: 36px;
-  padding: 12px;
-  box-shadow: $shadow-xl, 0 0 80px rgba(245, 197, 24, 0.08);
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
+	width: 240px;
+	background: $color-bg-card;
+	border: 1px solid $color-border;
+	border-radius: 36px;
+	padding: 12px;
+	box-shadow:
+		$shadow-xl,
+		0 0 80px rgba(245, 197, 24, 0.08);
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.5), transparent);
-  }
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(245, 197, 24, 0.5),
+			transparent
+		);
+	}
 }
 
 .phoneSpeaker {
-  width: 60px;
-  height: 6px;
-  background: $color-border;
-  border-radius: $radius-full;
-  margin: 0 auto $space-3;
+	width: 60px;
+	height: 6px;
+	background: $color-border;
+	border-radius: $radius-full;
+	margin: 0 auto $space-3;
 }
 
 .phoneScreen {
-  background: $color-bg-secondary;
-  border-radius: 24px;
-  padding: $space-4;
-  min-height: 380px;
-  display: flex;
-  flex-direction: column;
-  gap: $space-4;
+	background: $color-bg-secondary;
+	border-radius: 24px;
+	padding: $space-4;
+	min-height: 380px;
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
 }
 
 .appHeader {
-  display: flex;
-  align-items: center;
-  gap: $space-3;
+	display: flex;
+	align-items: center;
+	gap: $space-3;
 }
 
 .appAvatar {
-  width: 36px;
-  height: 36px;
-  border-radius: $radius-full;
-  background: linear-gradient(135deg, $color-accent, $color-accent-dark);
+	width: 36px;
+	height: 36px;
+	border-radius: $radius-full;
+	background: linear-gradient(135deg, $color-accent, $color-accent-dark);
 }
 
 .appName {
-  width: 80px;
-  height: 10px;
-  background: $color-white-10;
-  border-radius: $radius-full;
-  margin-bottom: 4px;
+	width: 80px;
+	height: 10px;
+	background: $color-white-10;
+	border-radius: $radius-full;
+	margin-bottom: 4px;
 }
 
 .appSub {
-  width: 50px;
-  height: 8px;
-  background: $color-white-05;
-  border-radius: $radius-full;
+	width: 50px;
+	height: 8px;
+	background: $color-white-05;
+	border-radius: $radius-full;
 }
 
 .appChart {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  height: 80px;
-  padding: $space-2 0;
-  background: $color-bg-card;
-  border-radius: $radius-md;
-  padding: 8px;
+	display: flex;
+	align-items: flex-end;
+	gap: 4px;
+	height: 80px;
+	padding: $space-2 0;
+	background: $color-bg-card;
+	border-radius: $radius-md;
+	padding: 8px;
 }
 
 .appBar {
-  flex: 1;
-  background: linear-gradient(to top, $color-accent, rgba(245, 197, 24, 0.3));
-  border-radius: 3px 3px 0 0;
-  animation: barGrow 0.8s ease forwards;
-  transform-origin: bottom;
+	flex: 1;
+	background: linear-gradient(to top, $color-accent, rgba(245, 197, 24, 0.3));
+	border-radius: 3px 3px 0 0;
+	animation: barGrow 0.8s ease forwards;
+	transform-origin: bottom;
 
-  @keyframes barGrow {
-    from { transform: scaleY(0); }
-    to { transform: scaleY(1); }
-  }
+	@keyframes barGrow {
+		from {
+			transform: scaleY(0);
+		}
+		to {
+			transform: scaleY(1);
+		}
+	}
 }
 
 .appStats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $space-2;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: $space-2;
 }
 
 .appStat {
-  background: $color-bg-card;
-  border-radius: $radius-md;
-  padding: $space-3;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+	background: $color-bg-card;
+	border-radius: $radius-md;
+	padding: $space-3;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }
 
 .appStatVal {
-  font-size: $font-size-base;
-  font-weight: $font-weight-bold;
-  color: $color-accent;
+	font-size: $font-size-base;
+	font-weight: $font-weight-bold;
+	color: $color-accent;
 }
 
 .appStatLbl {
-  font-size: $font-size-xs;
-  color: $color-text-secondary;
+	font-size: $font-size-xs;
+	color: $color-text-secondary;
 }
 
 .appCard {
-  height: 40px;
-  background: $color-bg-card;
-  border-radius: $radius-md;
-  border: 1px solid $color-border;
+	height: 40px;
+	background: $color-bg-card;
+	border-radius: $radius-md;
+	border: 1px solid $color-border;
 }
 
 .appCard2 {
-  height: 40px;
-  background: rgba(245, 197, 24, 0.08);
-  border-radius: $radius-md;
-  border: 1px solid rgba(245, 197, 24, 0.15);
+	height: 40px;
+	background: rgba(245, 197, 24, 0.08);
+	border-radius: $radius-md;
+	border: 1px solid rgba(245, 197, 24, 0.15);
 }
 
 .floatCard1,
 .floatCard2 {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: $space-3 $space-4;
-  background: $color-bg-card;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-md;
-  gap: 4px;
-  animation: float 3s ease-in-out infinite;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: $space-3 $space-4;
+	background: $color-bg-card;
+	border: 1px solid $color-border;
+	border-radius: $radius-lg;
+	box-shadow: $shadow-md;
+	gap: 4px;
+	animation: float 3s ease-in-out infinite;
 }
 
 .floatCard1 {
-  top: 20px;
-  right: -30px;
-  animation-delay: 0s;
+	top: 20px;
+	right: -30px;
+	animation-delay: 0s;
+	z-index: 9999;
 }
 
 .floatCard2 {
-  bottom: 30px;
-  left: -30px;
-  animation-delay: 1.5s;
+	bottom: 30px;
+	left: -30px;
+	animation-delay: 1.5s;
+	z-index: 9999;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+	}
 }
 
 .floatVal {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 .floatLbl {
-  font-size: $font-size-xs;
-  color: $color-text-secondary;
-  white-space: nowrap;
+	font-size: $font-size-xs;
+	color: $color-text-secondary;
+	white-space: nowrap;
 }
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: $space-6;
-  order: 1;
+	display: flex;
+	flex-direction: column;
+	gap: $space-6;
+	order: 1;
 
-  @include xl {
-    order: 2;
-  }
+	@include xl {
+		order: 2;
+	}
 }
 
 .label {
-  @include section-label;
+	@include section-label;
 }
 
 .title {
-  @include section-title;
+	@include section-title;
 }
 
 .accent {
-  color: $color-accent;
+	color: $color-accent;
 }
 
 .desc {
-  @include section-desc;
-  max-width: 480px;
+	@include section-desc;
+	max-width: 480px;
 }
 
 .bullets {
-  display: flex;
-  flex-direction: column;
-  gap: $space-4;
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
 }
 
 .bullet {
-  display: flex;
-  align-items: center;
-  gap: $space-3;
-  font-size: $font-size-base;
-  color: $color-white-80;
+	display: flex;
+	align-items: center;
+	gap: $space-3;
+	font-size: $font-size-base;
+	color: $color-white-80;
 }
 
 .checkIcon {
-  @include flex-center;
-  width: 24px;
-  height: 24px;
-  background: rgba(245, 197, 24, 0.1);
-  border-radius: $radius-full;
-  color: $color-accent;
-  flex-shrink: 0;
+	@include flex-center;
+	width: 24px;
+	height: 24px;
+	background: rgba(245, 197, 24, 0.1);
+	border-radius: $radius-full;
+	color: $color-accent;
+	flex-shrink: 0;
 }
 
 .cta {
-  display: flex;
-  align-items: center;
-  gap: $space-4;
-  flex-wrap: wrap;
-  margin-top: $space-2;
+	display: flex;
+	align-items: center;
+	gap: $space-4;
+	flex-wrap: wrap;
+	margin-top: $space-2;
 }
 
 .primaryBtn {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 28px;
-  background: $color-accent;
-  color: $color-bg-primary;
-  border-radius: $radius-full;
-  font-weight: $font-weight-bold;
-  font-size: $font-size-base;
-  text-decoration: none;
-  transition: all $transition-base;
+	display: inline-flex;
+	align-items: center;
+	padding: 12px 28px;
+	background: $color-accent;
+	color: $color-bg-primary;
+	border-radius: $radius-full;
+	font-weight: $font-weight-bold;
+	font-size: $font-size-base;
+	text-decoration: none;
+	transition: all $transition-base;
 
-  &:hover {
-    background: $color-accent-dark;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.3);
-  }
+	&:hover {
+		background: $color-accent-dark;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(245, 197, 24, 0.3);
+	}
 }
 
 .secondaryBtn {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 28px;
-  background: transparent;
-  color: $color-white-80;
-  border: 1px solid $color-border;
-  border-radius: $radius-full;
-  font-weight: $font-weight-medium;
-  font-size: $font-size-base;
-  text-decoration: none;
-  transition: all $transition-base;
+	display: inline-flex;
+	align-items: center;
+	padding: 12px 28px;
+	background: transparent;
+	color: $color-white-80;
+	border: 1px solid $color-border;
+	border-radius: $radius-full;
+	font-weight: $font-weight-medium;
+	font-size: $font-size-base;
+	text-decoration: none;
+	transition: all $transition-base;
 
-  &:hover {
-    color: $color-white;
-    border-color: $color-border-light;
-    background: $color-white-05;
-  }
+	&:hover {
+		color: $color-white;
+		border-color: $color-border-light;
+		background: $color-white-05;
+	}
 }
