@@ -159,18 +159,41 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: $radius-full;
 }
 
-// ─── Page transitions ─────────────────────────────────────────────────────────
+// ─── Custom cursor ─────────────────────────────────────────────────────────────
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+// ─── 3-D perspective helpers ───────────────────────────────────────────────────
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+// ─── GSAP scroll targets — start hidden, GSAP reveals them ────────────────────
+// (GSAP overrides these with inline styles; the CSS below is just initial state)
+.fade-up,
+.fade-in,
+.slide-left,
+.slide-right,
+.scale-in {
+  will-change: opacity, transform;
+}
+
+// ─── Page transition wrapper ───────────────────────────────────────────────────
 .page-enter {
   animation: pageEnter 0.4s ease forwards;
 }
 
 @keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+// ─── Glow pulse utility ────────────────────────────────────────────────────────
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(245, 197, 24, 0.15); }
+  50%       { box-shadow: 0 0 40px rgba(245, 197, 24, 0.35); }
+}
+
+.glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
